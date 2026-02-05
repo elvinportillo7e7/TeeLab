@@ -52,60 +52,64 @@ const productosJSON = `[
     },
     "tags": ["premium"]
   }
-]
-`;
+]`;
 
-const productos = JSON.parse(datos);
+const productos = JSON.parse(productosJSON);
 
 function init() {
-    mostrarCartas();
-}
-
-function mostrarCartas() {
     const contenedor = document.getElementById("lista-productos");
-    contenedor.innerHTML = ""; // Limpiar
 
-    // Recorremos cada producto y creamos sus etiquetas
+    if (!contenedor) return;
+    contenedor.innerHTML = ""; 
+
     productos.forEach(producto => {
-        
-        // 1. Crear el envoltorio (article)
         const carta = document.createElement("article");
 
-        // 2. Crear Imagen
-        const img = document.createElement("img");
-        img.src = producto.img;
-        carta.appendChild(img);
+        // 1. Imagen
+        const primeraImagen = Object.values(producto.imagenes)[0];
+        const imagen = document.createElement("img");
+        imagen.src = primeraImagen;
+        imagen.alt = producto.nombre;
+        carta.appendChild(imagen);
 
-        // 3. Crear Título
+        // 2. Título
         const titulo = document.createElement("h3");
         titulo.textContent = producto.nombre;
         carta.appendChild(titulo);
 
-        // 4. Crear Precio (usamos una clase simple 'precio' para el color verde)
+        // 3. Descripción (NUEVO)
+        const desc = document.createElement("p");
+        desc.textContent = producto.descripcion;
+        desc.style.fontSize = "0.9em"; // Un poco más pequeño para que quede bien
+        desc.style.color = "#555";
+        carta.appendChild(desc);
+
+        // 4. Precio
         const precio = document.createElement("div");
         precio.className = "precio";
-        precio.textContent = `€${producto.precio.toFixed(2)}`;
+        precio.textContent = "€" + producto.precioBase.toFixed(2);
         carta.appendChild(precio);
 
-        // 5. Crear Selector de Tallas
-        const select = document.createElement("select");
+        // 5. Selector
+        const selector = document.createElement("select");
         producto.tallas.forEach(talla => {
             const opcion = document.createElement("option");
             opcion.value = talla;
             opcion.textContent = talla;
-            select.appendChild(opcion);
+            selector.appendChild(opcion);
         });
-        carta.appendChild(select);
+        carta.appendChild(selector);
 
-        // 6. Crear Botón
+        // 6. Botón (Sin alert)
         const boton = document.createElement("button");
         boton.textContent = "Comprar";
         boton.addEventListener("click", () => {
-            alert("Añadido: " + producto.nombre);
+            console.log("Producto añadido al carrito (lógica pendiente)");
         });
         carta.appendChild(boton);
 
-        // Finalmente, añadimos la carta al contenedor principal
         contenedor.appendChild(carta);
     });
 }
+
+init();

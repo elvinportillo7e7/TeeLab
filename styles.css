@@ -1,72 +1,79 @@
-/* Fuente y fondo general */
 body {
-    font-family: sans-serif;
-    background-color: #eee;
-    margin: 0;
+    font-family: Arial, sans-serif;
     padding: 20px;
+    background-color: #f4f4f4;
 }
 
-/* El contenedor principal (Rejilla) */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* El contenedor de productos */
 #lista-productos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 20px;
+    /* He quitado el borde dashed de aquí */
 }
 
-/* La carta del producto */
+/* La carta individual */
 article {
     background: white;
-    padding: 15px;
+    border: 1px solid #ddd; /* Borde suave y continuo */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribuye mejor el espacio */
 }
 
-/* Imagen */
-article img {
+img {
     width: 100%;
-    height: 180px;
-    object-fit: contain;
+    height: 200px;
+    object-fit: contain; /* Para que la camiseta se vea entera */
     margin-bottom: 10px;
 }
 
-/* Título */
-article h3 {
-    margin: 5px 0;
+h3 {
+    margin: 10px 0 5px 0;
     font-size: 1.1em;
 }
 
-/* Precio */
-article .precio {
-    color: #4CAF50; /* Verde simple */
-    font-weight: bold;
-    font-size: 1.2em;
-    margin: 10px 0;
+p {
+    margin: 5px 0 15px 0; /* Espacio para la descripción */
+    line-height: 1.4;
 }
 
-/* Selector y Botón */
-select, button {
+.precio {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+select {
+    padding: 5px;
+    margin-bottom: 10px;
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
     border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
-    background-color: #333;
+    background-color: black;
     color: white;
+    padding: 10px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
 }
 
 button:hover {
-    background-color: #000;
+    background-color: #333;
 }
